@@ -61,23 +61,25 @@ void SearchVisit(HashListType DB);
 
 int main(){
     int choice;
-    HashListType DB;
+    HashListType DB; //An imitation of a database
     CreateHashList(&DB);
 
     do{
         menu(&choice);
 
         if(choice == 1)
-            NewVisit(&DB);
+            NewVisit(&DB); //Make a new appointment
         else if(choice == 2)
-            SearchVisit(DB);
+            SearchVisit(DB); //Search for a client
     }while(choice != 3);
 
-    printf("Exiting the program.. \n");
+    printf("Exiting the program.. \n"); //If choice is 3 then terminate the program
 
     return 0;
 }
 
+/*This is the menu that will appear in the user screen 
+The user will use one of the provided choices*/
 void menu(int *choice){
     printf("\t\t\tMENU\n");
     printf("-------------------------------------------------\n");
@@ -87,28 +89,30 @@ void menu(int *choice){
     do{
         printf("\nEnter the number of your choice: ");
     	scanf("%d", choice);
-    	if(*choice<1 || *choice>3){
+    	if(*choice<1 || *choice>3){ //Get a choice between 1-3
             printf("This is not a given choice...\n\n");
     	}
     }while(*choice<1 && *choice>3);
 }
 
+//A method to get the HashKey
 int HashKey(int Key){
 	return Key%HMax;
 }
 
+//A method to create a Hash List
 void CreateHashList(HashListType *HList){
 	int index;
 
 	HList->Size = 0;
 	HList->StackPtr = 0;
-    index = 0;
+    	index = 0;
 	while(index<HMax){
 		HList->HashTable[index] = EndOfList;
 		index = index+1;
-    }
+    	}
 
-    index = 0;
+   	index = 0;
 	while(index<VMax-1){
 		HList->List[index].Link = index+1;
 		HList->List[index].Data.paid = 0;
@@ -118,10 +122,12 @@ void CreateHashList(HashListType *HList){
 	HList->List[index].Link = EndOfList;
 }
 
+//A method to see if the list is full
 boolean FullHashList(HashListType HList){
 	return(HList.Size==VMax);
 }
 
+//A method to search for synonyms in the hash list
 void SearchSynonymList(HashListType HList,int KeyArg,int *Loc,int *Pred){
 	int Next;
 
@@ -140,11 +146,12 @@ void SearchSynonymList(HashListType HList,int KeyArg,int *Loc,int *Pred){
 	}
 }
 
+//A method to search inside the hash list
 void SearchHashList(HashListType HList,int KeyArg,int *Loc,int *Pred){
 	int HVal;
 
 	HVal = HashKey(KeyArg);
-    if(HList.HashTable[HVal] == EndOfList){
+    	if(HList.HashTable[HVal] == EndOfList){
 		*Pred = -1;
 		*Loc = -1;
 	}
@@ -154,6 +161,7 @@ void SearchHashList(HashListType HList,int KeyArg,int *Loc,int *Pred){
 	}
 }
 
+//A method to add a new record in the list
 void AddRec(HashListType *HList,ListElm InRec){
 	int Loc, Pred, New, HVal;
 
@@ -183,6 +191,8 @@ void AddRec(HashListType *HList,ListElm InRec){
 		printf("The list is full can't add more...");
 }
 
+/*A method to get the summary of the characters from the client's name
+because we want to "save" the name as an integer and not a string*/
 int GetCharacterSum(char *Name){
     int index;
     int key;
@@ -201,6 +211,7 @@ int GetCharacterSum(char *Name){
     return key;
 }
 
+//A method to create a new appointment
 void NewVisit(HashListType *DB){
     char ch;
     ListElm AnItem;
@@ -240,6 +251,7 @@ void NewVisit(HashListType *DB){
     }while(ch != 'N');
 }
 
+//A method to search for a client
 void SearchVisit(HashListType DB){
     int Akey;
     int Loc, Pred;
