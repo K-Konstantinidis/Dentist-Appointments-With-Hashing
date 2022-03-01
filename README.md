@@ -21,3 +21,4 @@ Also, if the user tries to create an appointment and the name they insert alread
 E.g.:
 ![Code image](eg1.png)
 ![Code image](eg2.png)
+![Code image](eg3.png)
