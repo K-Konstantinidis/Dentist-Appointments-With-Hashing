@@ -13,12 +13,13 @@ They have 3 choices:
 
 3)Finally they can just exit the menu and terminate the program.
 
-After adding a new appointment in the catalogue, a message saying "Continue Y/N:" will appear. If the user enter 'Y' the they
+After adding a new appointment in the catalogue, a message saying "Continue Y/N:" will appear. If the user enters 'Y' then they
 will have to add a new client and make another appointment. If they enter 'N', then the menu will pop up.
 
 Also, if the user tries to create an appointment and the name they insert already exist in the catalogue, then a message will appear not allowing the user to enter that name so there are no duplicates.
 
 E.g.:
+
 ![Code image](eg1.png)
 ![Code image](eg2.png)
 ![Code image](eg3.png)
